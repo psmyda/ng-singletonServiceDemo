@@ -10,18 +10,14 @@ import { User } from '../models/user';
 export class SecondComponent implements OnInit {
   users: User[];
 
-  testUser: User = {
-    firstName: 'test',
-    lastName: 'Test'
-  }
-
-  constructor(private _service: UtilityService) {
-    this.users.push(this.testUser);
-   }
+  constructor(private _service: UtilityService) {  }
 
   ngOnInit() {
-    this._service.addUser(this.testUser);
     this._service.getUsers().subscribe(result => this.users = result);
+    console.log(this.users);
   }
 
+  removeUser(user: User) {
+    this._service.removeUser(user);
+  }
 }
